@@ -5,6 +5,9 @@
 • положительное число
 • отрицательное число
 '''
+from tkinter import W
+
+
 print('Задача 1')
 print('МЕНЮ')
 print('Выберите, когда остановим цикл:', 
@@ -28,49 +31,55 @@ if n == 0:
 
 if n == 1:
     print('Цикл не завершится пока не введете четное число')
-    try:
-        while int(input()) % 2 != 0:
-            print('введите число')
-        print('цикл завершен')
-    except ValueError:
-        print('Это недопустимое значение')
+    while True:
+        try:
+            x = int(input('введите число: '))
+            if x  % 2 == 0:
+                break
+        except ValueError:
+            print('Это недопустимое значение')
+
 
 if n == 2:
     print('Цикл не завершится пока не введете нечетное число')
-    print('введите число')
-    try:
-        while int(input()) % 2 == 0:
-            print('введите число')
-        print('цикл завершен')
-    except ValueError:
-        print('Это недопустимое значение')
+    while True:
+        try:
+            x = int(input('введите число: '))
+            if x  % 2 != 0:
+                break
+        except ValueError:
+            print('Это недопустимое значение')
 
 if n == 3:
     print('Цикл не завершится пока не введете положительное число')
-    print('введите число')
-    try:
-        while int(input()) < 0:
-            print('введите число')
-    except ValueError:
-        print('Это недопустимое значение')
-    print('цикл завершен')
+    while True:
+        try:
+            x = int(input('введите число: '))
+            if x > 0:
+                break
+        except ValueError:
+            print('Это недопустимое значение')
 
 if n == 4:
     print('Цикл не завершится пока не введете отрицательное число')
-    print('введите число')
-    try:
-        while int(input()) > 0:
-            print('введите число')
-    except ValueError:
-        print('Это недопустимое значение')
-    print('цикл завершен')
-
+    while True:
+        try:
+            x = int(input('введите число: '))
+            if x < 0:
+                break
+        except ValueError:
+            print('Это недопустимое значение')
 
 
 '''
  2. пользователь вводит числа, найти сумму всех чисел, их количество и среднее значение.
 Для окончания ввода ввести 0
 '''
+'''
+summa = 0
+count = 0
+while int(input()) != 0:
+   ''' 
 
 
 
