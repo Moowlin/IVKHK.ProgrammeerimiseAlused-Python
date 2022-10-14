@@ -98,6 +98,7 @@ print()
 # ----------------------------------------------------------------------------------------------------------------------
 print('ЗАДАЧА №4')
 from random import randint
+from tkinter import W
 N, V = None, None
 while True:
     try:
@@ -254,6 +255,7 @@ print()
 # количество.
 # ----------------------------------------------------------------------------------------------------------------------
 print('ЗАДАЧА №9')
+'''
 from random import randint
 N, V, K = None, None, None
 while True:
@@ -297,12 +299,52 @@ print(f'Диапазон генерации чисел ({N}:{V})')
 print(f'Сгенерированы числа: ', *numbers)
 print(f'Количество нулей в последовательности {count}')
 print()
+'''
+
+N = None
+while True:
+    try:
+        N = int(input('Укажите целое положительное число больше 0 '))
+        if N <= 0:
+            raise Exception
+    except ValueError:
+        print('Это недопустимое значение')
+    except Exception:
+        print('Это недопустимое значение')
+    if N is not None and N > 0:
+        break
+
+print(f'Вводите целые числа, у вас не более {N} попыток, для завершения цикла раньше введите пустую строку')
+Flag = True
+count = 0
+for i in range(1, N + 1): 
+    while Flag == True:
+        try:
+            num = input(f'У вас осталось {N-i} попыток. Введите число ')
+            if num == '':
+                print('до свидания!')
+                Flag = False
+                break
+            if num.isdigit() == False:
+                num = None
+                raise Exception
+        except Exception:
+            print('Это недопустимое значение')
+        if num is not None:
+            print(num)
+            break
+    if Flag == False:
+        break
+    for j in num:
+        if j == "0":
+            count += 1
+print(f'введено {count} нулей')
+print()
 
 # ----------------------------------------= 10. ЗАДАЧА «ЛЕСЕНКА» =------------------------------------------------------
 # По данному натуральному n ≤ 9 выведите лесенку из n ступенек, i-я ступенька состоит из чисел от 1 до i без пробелов
 # (вложенные циклы).
 # ----------------------------------------------------------------------------------------------------------------------
-
 print('ЗАДАЧА №10')
 N = None
 while True:
