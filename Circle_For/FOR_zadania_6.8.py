@@ -98,7 +98,6 @@ print()
 # ----------------------------------------------------------------------------------------------------------------------
 print('ЗАДАЧА №4')
 from random import randint
-from tkinter import W
 N, V = None, None
 while True:
     try:
@@ -378,10 +377,10 @@ while True:
         N = int(input('Укажите количество карточек в игре: '))
         if N <= 0:
             raise Exception('Это недопустимое значение')
-    except Exception as e:
-        print(e)
     except ValueError:
         print('Это недопустимое значение')
+    except Exception as e:
+        print(e)
     if N is not None and N > 0:
         break
 
@@ -403,11 +402,11 @@ for i in range(1, N):
             if karta not in range(1, N+1):
                 verification = False
                 raise Exception('Данной карты нет в колоде. Укажите другой номер')
-        except Exception as e:
-            print(e)
         except ValueError:
             verification = False
             print('Это недопустимое значение')
+        except Exception as e:
+            print(e)
         if verification == True:
             break
     koloda.append(karta)
