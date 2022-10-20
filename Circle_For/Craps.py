@@ -33,12 +33,12 @@ def round_game(wallet, win, loss):
             flag = False
             wallet += bet
             win = 1
-            print('Вы выиграли')
+            print("\033[32m {} \033[0m".format('Вы выиграли'))
         elif move == 2 or move == 3 or move == 12:
             wallet -= bet
             loss = 1
             flag = False
-            print('Вы проиграли')
+            print("\033[33m {} \033[0m".format('Вы проиграли'))
         else:
             point = move   #Если выпадает другое число, оно запоминается под названием point
 
@@ -51,17 +51,17 @@ def round_game(wallet, win, loss):
             if move == 7:
                 wallet -= bet
                 loss = 1
-                print('Вы проиграли')
+                print("\033[33m {} \033[0m".format('Вы проиграли'))
                 flag = False
             elif move == point:
                 wallet += bet
                 win = 1
-                print('Вы выиграли')
+                print("\033[32m {} \033[0m".format('Вы выиграли'))
                 flag = False
 
     print('Конец раунда')
     print('Итоги:')
-    print(f'Состояние кошелька {wallet} евро')
+    print("\033[34m {} \033[0m".format(f'Состояние кошелька {wallet} евро'))
     return wallet, win, loss
 
 def question():
@@ -100,7 +100,7 @@ while EndGame ==  False:
 
     print(f'всего выиграшей {sum_win}, проигрышей {sum_loss}')
     if wallet <= 0:
-        print('Вы банкрот 🤣')
+        print("\033[31m {} \033[0m".format('Вы банкрот 🤣'))
         EndGame ==  True
         break
     else:
