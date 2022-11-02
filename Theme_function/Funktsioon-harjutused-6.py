@@ -5,6 +5,7 @@
 # Leia sekundite kogus viimaselt miinutilt
 # Loo metod, mis tagastab kellaaja (tunnid:minutid:sekundid)
 # Näiteks, kui kasutaja sisestab 4855, tagastavad meetodid hour=1, minute=80, seconds=55  kellaaeg 1:20:55
+
 # 6. С начала суток прошло N секунд (N-целое число). Создайте функции для решения:
 # Найдите полное количество минут с начала дня
 # Найдите полное количество часов с начала дня

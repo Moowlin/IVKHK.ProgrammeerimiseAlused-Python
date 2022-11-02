@@ -4,6 +4,7 @@
 #   2. Mäng CRAPS (http://en.wikipedia.org/wiki/Craps)
 #   3. Mäng PULLID ja LEHMAD (http://en.wikipedia.org/wiki/Bulls_and_cows)
 #   4. Välja
+
 # 7. Создайте меню для просмотра решений.
 #   1. Игра «УГАДАЙ СЛОВО».
 #   2. Игра CRAPS (http://en.wikipedia.org/wiki/Craps)
