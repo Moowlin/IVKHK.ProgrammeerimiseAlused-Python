@@ -8,7 +8,6 @@ def create2dListNum(STR, STL, start, stop):
     return A
 
 def create2dListSymbol(STR, STL, symbol):
-    from random import randint
     A = []
     for i in range(STR):
         A.append([symbol for j in range(STL)])
@@ -27,13 +26,6 @@ def print2dArray(arr):
             print(arr[i][j], end=' ')
         print()
 
-'''arr = create2dListNum(5, 5, 1, 10)
-print(arr)
-print2dArray(arr)'''
-'''
-arr = create2dListSymbol(5, 5, '.')
-print(arr)
-print2dArray(arr)'''
 
 # -------------------------------------= 1. ЗАДАЧА «МАКСИМУМ» =---------------------------------------------------------
 # Найдите индексы первого вхождения максимального элемента.
@@ -42,7 +34,7 @@ print2dArray(arr)'''
 # которого меньше номер столбца.
 # Программа получает на вход размеры массива n и m, затем n строк по m чисел в каждой.
 # ----------------------------------------------------------------------------------------------------------------------
-'''
+
 print('1. ЗАДАЧА «МАКСИМУМ»')
 n = int(input('Укажите количество строк: '))
 m = int(input('Укажите количество столбцов: '))
@@ -119,7 +111,7 @@ for i in range(n):
     result.append(STR)
 print2dArray(result)
 print()
-'''
+
 # -------------------------------------= 4. ЗАДАЧА «ДИАГОНАЛИ, ПАРАЛЛЕЛЬНЫЕ ГЛАВНОЙ» =----------------------------------
 # Дано число n. Создайте массив размером n×n и заполните его по следующему правилу. На главной диагонали должны быть
 # записаны числа 0. На двух диагоналях, прилегающих к главной, числа 1. На следующих двух диагоналях числа 2, и т.д.
@@ -138,34 +130,16 @@ while True:
         print()
         break
 
-
-result = []
-
+result = create2dListSymbol(n, n, '.')
 for i in range(n):
-    STR = []
     for j in range(n):
-        if i == j:
-            STR.append(0)
-        elif j == i + (n+1) or j == i - (n-1):
-            STR.append(n+1)
-
-        #elif j == i+1 or j == i-1:
-        #    STR.append(1)
-        #elif j == i+2 or j == i-2:
-        #    STR.append(2)
-        #elif j == i+3 or j == i-3:
-        #    STR.append(3)
-        #elif j == i+4 or j == i-4:
-        #    STR.append(4)
-
-        else:
-            STR.append('*')
-    result.append(STR)
+        result[i][j] = abs(i-j)
+        # for u in range(n):
+        #   if j == i+u or j == i-u:
+        #      result[i][j] = u
 print2dArray(result)
 print()
 
-
-'''
 # -------------------------------------= 5. ЗАДАЧА «ПОБОЧНАЯ ДИАГОНАЛЬ» =-----------------------------------------------
 # Дано число n. Создайте массив размером n×n и заполните его по следующему правилу:
 # Числа на диагонали, идущей из правого верхнего в левый нижний угол равны 1.
@@ -174,8 +148,32 @@ print()
 # Полученный массив выведите на экран. Числа в строке разделяйте одним пробелом.
 # ----------------------------------------------------------------------------------------------------------------------
 print('5. ЗАДАЧА «ПОБОЧНАЯ ДИАГОНАЛЬ»')
-print()
 
+while True:
+    try:
+        n = int(input('Укажите НЕЧЕТНОЕ число: '))
+        if n % 2 == 0:
+            raise Exception
+    except ValueError:
+        print('Введены некорректные данные')
+    except Exception:
+        print('Вы ввели четное число')
+    else:
+        print()
+        break
+
+result = create2dListSymbol(n, n, 0)
+
+for i in range(n):
+    for j in range(n):
+        if i == j:
+            result[i][-j - 1] = 1
+        if i == j-1:
+            result[i][-j - 1] = 0
+        if j > len(result)-i-1:
+            result[i][j] = 2
+print2dArray(result)
+print()
 
 # -------------------------------------= 6. ЗАДАЧА «ПОМЕНЯТЬ СТОЛБЦЫ» =-------------------------------------------------
 # Дан двумерный массив и два числа: i и j.
@@ -185,5 +183,38 @@ print()
 # Решение оформите в виде функции swap_columns(a, i, j).
 # ----------------------------------------------------------------------------------------------------------------------
 print('6. ЗАДАЧА «ПОМЕНЯТЬ СТОЛБЦЫ»')
+
+def swap_columns(a, st1, st2):
+    n = len(a)
+    m = len(a[0])
+    for i in range(n):
+        for j in range(m):
+            x = a[i][st1-1]
+            a[i][st1-1] = a[i][st2-1]
+            a[i][st2 - 1] = x
+    return a
+
+n = int(input('Укажите количество строк: '))
+m = int(input('Укажите количество столбцов: '))
+a = create2dListNum(n, m, 1, 9)
+print('Исходный массив')
+print2dArray(a)
+
+while True:
+    try:
+        i = int(input('Укажите номер столбца i: '))
+        j = int(input('Укажите номер столбца j: '))
+        if (i <= 0) or (i > m) or (j <= 0) or (j > m) or (i == j):
+            raise Exception
+    except ValueError:
+        print('Введены некорректные данные')
+    except Exception:
+        print('Вы ввели некорректный номер столбца')
+    else:
+        print()
+        break
+
+print('Новый массив массив')
+a = swap_columns(a, i, j)
+print2dArray(a)
 print()
-'''

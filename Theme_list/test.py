@@ -1,3 +1,17 @@
+def create2dListNum(STR, STL, start, stop):
+    from random import randint
+    A = []
+    for i in range(STR):
+        A.append([randint(start, stop) for j in range(STL)])
+    return A
+
+def create2dListSymbol(STR, STL, symbol):
+    from random import randint
+    A = []
+    for i in range(STR):
+        A.append([symbol for j in range(STL)])
+    return A
+
 def createList(l, start, stop):
     from random import randint
     A = []
@@ -5,20 +19,38 @@ def createList(l, start, stop):
         A.append(randint(start, stop))
     return A
 
-print('7. ЗАДАЧА «ШЕРЕНГА»')
-pupils = createList(10, 150, 160)
-pupils.sort(reverse=True)
-Peter = int(input('Укажите рост Пети: '))
-print(f'Рост учеников: {pupils}')
+def print2dArray(arr):
+    for i in range(len(arr)):
+        for j in range(len(arr[i])):
+            print(arr[i][j], end=' ')
+        print()
 
-for i in range(len(pupils)-1):
-    if pupils[-1] >= Peter:
-        print(f'Петя должен встать под номером {len(pupils)+1}')
-        pupils.append(Peter)
+
+
+print('5. ЗАДАЧА «ПОБОЧНАЯ ДИАГОНАЛЬ»')
+
+while True:
+    try:
+        n = int(input('Укажите НЕЧЕТНОЕ число: '))
+        if n % 2 == 0:
+            raise Exception
+    except ValueError:
+        print('Введены некорректные данные')
+    except Exception:
+        print('Вы ввели четное число')
+    else:
+        print()
         break
-    if pupils[i] >= Peter > pupils[i+1]:
-        print(f'Петя должен встать под номером {i+2}')
-        pupils.insert(i+1, Peter)
-        break
-print(pupils)
+
+result = create2dListSymbol(n, n, 0)
+
+for i in range(n):
+    for j in range(n):
+        if i == j:
+            result[i][-j - 1] = 1
+        if i == j-1:
+            result[i][-j - 1] = 0
+        if j > len(result)-i-1:
+            result[i][j] = 2
+print2dArray(result)
 print()
