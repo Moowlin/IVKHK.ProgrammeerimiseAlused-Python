@@ -34,6 +34,18 @@ def swap_columns(a, st1, st2):
             a[i][st2 - 1] = x
     return a
 
+
+def swap_lines(a, str1, str2):
+    '''Функция перестановки столбцов местами'''
+    n = len(a)
+    m = len(a[0])
+    for i in range(n):
+        x = a[str1-1]
+        a[str1-1] = a[str2-1]
+        a[str2 - 1] = x
+    return a
+
+
 def copy2dArray(a):
     '''Функция копирования двумерного массива'''
     n = len(a)
@@ -47,9 +59,9 @@ def copy2dArray(a):
 
 n = int(input('Укажите количество строк: '))
 m = int(input('Укажите количество столбцов: '))
-matrix = create2dListNum(n, m, 1, 2)
+OriginMatrix = create2dListNum(n, m, 1, 2)
 
-M = copy2dArray(matrix)
+matrix = copy2dArray(OriginMatrix)
 
 print('Исходный массив: ')
 print2dArray(matrix)
@@ -64,10 +76,50 @@ for i in range(n):
     matrix[i].append(summaSTR)
 
 matrix.append(newStr)
-print('Новый массив: ')
+print('Суммы по строкам и столбцам: ')
 print2dArray(matrix)
 print()
-print2dArray(M)
+print('Меняем столбцы местами:')
+while True:
+    try:
+        i = int(input('Укажите номер столбца i: '))
+        j = int(input('Укажите номер столбца j: '))
+        if (i <= 0) or (i > m) or (j <= 0) or (j > m) or (i == j):
+            raise Exception
+    except ValueError:
+        print('Введены некорректные данные')
+    except Exception:
+        print('Вы ввели некорректный номер столбца')
+    else:
+        print()
+        break
+
+a = copy2dArray(OriginMatrix)
+
+print('Новый массив массив: ')
+a = swap_columns(a, i, j)
+print2dArray(a)
+
+print()
+
+b = copy2dArray(OriginMatrix)
+print('Меняем строки местами:')
+while True:
+    try:
+        i = int(input('Укажите номер строки i: '))
+        j = int(input('Укажите номер строки j: '))
+        if (i <= 0) or (i > n) or (j <= 0) or (j > n) or (i == j):
+            raise Exception
+    except ValueError:
+        print('Введены некорректные данные')
+    except Exception:
+        print('Вы ввели некорректный номер столбца')
+    else:
+        print()
+        break
+print('Новый массив массив: ')
+b = swap_lines(a, i, j)
+print2dArray(b)
 
 
 

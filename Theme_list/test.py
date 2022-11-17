@@ -1,56 +1,37 @@
-def create2dListNum(STR, STL, start, stop):
-    from random import randint
+name = ['Андрей', 'Елена', 'Юлия', 'Роберт', 'Валерия', 'Амбер', 'Один', 'Перун', 'Тор', 'Бальдр', 'Тюр', 'Хеймдалль',
+        'Браги', 'Хёд', 'Видар', 'Вали', 'Улль', 'Ньёрд', 'Фрейр', 'Локи', 'Екатерина', 'Петр', 'Вася', 'Олег', 'Ася']
+
+
+def create2dList(STR):
+    '''Функция создания матрицы размером STRxSTL, заполнение случайными числами из диапазона [start; stop]'''
+    from random import choice, randint
     A = []
     for i in range(STR):
-        A.append([randint(start, stop) for j in range(STL)])
-    return A
-
-def create2dListSymbol(STR, STL, symbol):
-    from random import randint
-    A = []
-    for i in range(STR):
-        A.append([symbol for j in range(STL)])
-    return A
-
-def createList(l, start, stop):
-    from random import randint
-    A = []
-    for i in range(l):
-        A.append(randint(start, stop))
+        A.append([choice(name), randint(120, 200)])
     return A
 
 def print2dArray(arr):
+    '''Функция печати массива'''
     for i in range(len(arr)):
         for j in range(len(arr[i])):
             print(arr[i][j], end=' ')
         print()
 
+def myKey(x):
+    return x[1]
 
-
-print('5. ЗАДАЧА «ПОБОЧНАЯ ДИАГОНАЛЬ»')
-
-while True:
-    try:
-        n = int(input('Укажите НЕЧЕТНОЕ число: '))
-        if n % 2 == 0:
-            raise Exception
-    except ValueError:
-        print('Введены некорректные данные')
-    except Exception:
-        print('Вы ввели четное число')
-    else:
-        print()
-        break
-
-result = create2dListSymbol(n, n, 0)
-
-for i in range(n):
-    for j in range(n):
-        if i == j:
-            result[i][-j - 1] = 1
-        if i == j-1:
-            result[i][-j - 1] = 0
-        if j > len(result)-i-1:
-            result[i][j] = 2
-print2dArray(result)
+num = int(input('Укажите количество учеников: '))
+print('Список учеников и их рост: ')
+pupils = create2dList(num)
+print2dArray(pupils)
 print()
+
+print('Сортировка по росту по возрастанию: ')
+pupils.sort(key=myKey)
+print2dArray(pupils)
+
+# Всё оказалось проще:
+# в функцию sort приходит элемент массива, при работе с вложенными списками в функцию sort приходит также список, только уже вложенный.
+# без ключа сортировка происходит по 0-му элементу
+# значит в ключ нужно передавать значение 1го элемента
+# создаем функцию myKey, на вход которой будет подаваться список: имя, рост. Возращаем только 1-й элемент (рост)
